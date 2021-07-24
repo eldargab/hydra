@@ -91,15 +91,10 @@ ENTRYPOINT [ "/bin/sh" ]
 
 
 FROM processor AS test
-COPY --from=test-builder /hydra/packages/hydra-cli/package.json packages/hydra-cli/
-COPY --from=test-builder /hydra/packages/hydra-typegen/package.json packages/hydra-typegen/
-COPY --from=test-builder /hydra/packages/hydra-test/package.json packages/hydra-test/
-COPY --from=test-builder /hydra/packages/hydra-cli/bin packages/hydra-cli/bin
-COPY --from=test-builder /hydra/packages/hydra-typegen/bin packages/hydra-typegen/bin
-RUN yarn
-COPY --from=test-builder /hydra/packages/hydra-cli/lib packages/hydra-cli/lib
-COPY --from=test-builder /hydra/packages/hydra-typegen/lib packages/hydra-typegen/lib
+COPY --from=test-builder /hydra/packages/hydra-cli packages/hydra-cli
+COPY --from=test-builder /hydra/packages/hydra-typegen packages/hydra-typegen
 COPY --from=test-builder /hydra/packages/hydra-test packages/hydra-test
+RUN yarn
 WORKDIR /hydra/packages/hydra-test
 RUN yarn workspace query-node compile
 
