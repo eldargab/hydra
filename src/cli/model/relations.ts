@@ -1,8 +1,4 @@
-import {
-  EntityRelationship,
-  Relation,
-  RelationType,
-} from './Relation'
+import { EntityRelationship, Relation, RelationType } from './Relation'
 import { ObjectType } from './ObjectType'
 import { Field } from './Field'
 import {

@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { ModelRenderer } from '../../generate/ModelRenderer'
 import { RelationshipGenerator } from '../../generate/RelationshipGenerator'
 import { WarthogModel } from '../../model'
-import {fromStringSchema, readResource} from './model'
+import { fromStringSchema, readResource } from './model'
 import { compact as c } from '../../generate/utils'
 
 describe('ReletionshipGenerator', () => {
@@ -12,13 +12,9 @@ describe('ReletionshipGenerator', () => {
   let resolverTemplate: string
 
   before(() => {
-    modelTemplate = readResource(
-      'templates/entities/model.ts.mst'
-    )
+    modelTemplate = readResource('templates/entities/model.ts.mst')
 
-    resolverTemplate = readResource(
-      'templates/entities/resolver.ts.mst'
-    )
+    resolverTemplate = readResource('templates/entities/resolver.ts.mst')
   })
 
   it('should not create import statement for self referenced entities', () => {

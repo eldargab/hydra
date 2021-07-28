@@ -4,7 +4,7 @@ import { ModelRenderer } from '../../generate/ModelRenderer'
 import { JsonFieldRenderer } from '../../generate/JsonFieldRenderer'
 import { WarthogModelBuilder } from '../../parse/WarthogModelBuilder'
 import { compact } from '../../generate/utils'
-import {readResource, resource} from "./model";
+import { readResource, resource } from './model'
 
 describe('JsonFieldRenderer', () => {
   let warthogModel: WarthogModel
@@ -15,9 +15,7 @@ describe('JsonFieldRenderer', () => {
     jsonFieldTemplate = readResource(
       'templates/jsonfields/jsonfields.model.ts.mst'
     )
-    modelTemplate = readResource(
-      'templates/entities/model.ts.mst'
-    )
+    modelTemplate = readResource('templates/entities/model.ts.mst')
 
     warthogModel = new WarthogModelBuilder(
       resource('fixtures/jsonfields.graphql')

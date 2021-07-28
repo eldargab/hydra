@@ -194,6 +194,7 @@ export function collectQueries(queries: {
   [key: string]: IndexerQuery
 }): string {
   // we need to do this hack to be able to run multiple queries in a single request
+  /* eslint-disable */
   return `query {
     ${Object.keys(queries)
       .map((name) => `${name}: ${getEventsGraphQLQuery(queries[name])}`)

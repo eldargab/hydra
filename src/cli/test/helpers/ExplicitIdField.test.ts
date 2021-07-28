@@ -1,6 +1,6 @@
 import { WarthogModelBuilder } from '../../parse/WarthogModelBuilder'
 import { expect } from 'chai'
-import { resource } from "./model"
+import { resource } from './model'
 
 describe('ExplicitIdFieldRemoval', () => {
   it('should remove id field from entities', () => {

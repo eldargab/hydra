@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { parseManifest } from '../start/manifest'
-import * as path from "path"
+import * as path from 'path'
 
 export const manifest = parseManifest(
   path.resolve(__dirname, '../../../resources/processor/fixtures/manifest.yml')

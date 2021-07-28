@@ -1,6 +1,6 @@
 import { WarthogModelBuilder } from '../../parse/WarthogModelBuilder'
 import { expect } from 'chai'
-import { resource } from "./model"
+import { resource } from './model'
 
 describe('WarthogModelBuild', () => {
   it('should add multi-field multi-entity FTSQuery to the model', () => {

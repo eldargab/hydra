@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { WarthogModel, Field } from '../../model'
-import * as PATH from "path"
+import * as PATH from 'path'
 import * as tmp from 'tmp'
 import * as fs from 'fs-extra'
 import { WarthogModelBuilder } from '../../parse/WarthogModelBuilder'

@@ -15,10 +15,7 @@ export function startPromEndpoint(): Server {
 
   server.get('/metrics/:metricName', async (req, res) => {
     res.set('Content-Type', register.contentType)
-    if (
-      !req.params.metricName ||
-      !validateMetricName(req.params.metricName)
-    ) {
+    if (!req.params.metricName || !validateMetricName(req.params.metricName)) {
       res.status(400).end('No requested metric found')
     }
     res.end(await register.getSingleMetricAsString(req.params.metricName))

@@ -6,7 +6,9 @@ const log = require('debug')('hydra-typegen:util')
 
 export function readTemplate(template: string): string {
   return fs
-    .readFileSync(path.join(__dirname, `../../resources/typegen/templates/${template}.hbs`))
+    .readFileSync(
+      path.join(__dirname, `../../resources/typegen/templates/${template}.hbs`)
+    )
     .toString()
 }
 

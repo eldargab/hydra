@@ -6,11 +6,7 @@ import { info } from '../util/log'
 import { BlockData } from '../queue'
 import { getMappingsLookup, IMappingExecutor } from '.'
 import { IMappingsLookup } from './IMappingsLookup'
-import {
-  DeepPartial,
-  FindOneOptions,
-  DatabaseManager,
-} from '../../common'
+import { DeepPartial, FindOneOptions, DatabaseManager } from '../../common'
 import { TxAwareBlockContext } from './tx-aware'
 
 const debug = Debug('hydra-processor:mappings-executor')

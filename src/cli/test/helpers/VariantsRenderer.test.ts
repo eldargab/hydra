@@ -8,9 +8,7 @@ describe('VariantsRenderer', () => {
 
   before(() => {
     // set timestamp in the context to make the output predictable
-    variantsTemplate = readResource(
-      'templates/variants/variants.mst'
-    )
+    variantsTemplate = readResource('templates/variants/variants.mst')
   })
 
   it('Should render union types', () => {

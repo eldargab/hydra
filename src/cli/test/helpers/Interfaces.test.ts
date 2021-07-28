@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { WarthogModelBuilder } from '../../parse/WarthogModelBuilder'
 import { WarthogModel } from '../../model'
 import { ModelRenderer } from '../../generate/ModelRenderer'
-import {readResource, resource} from "./model"
+import { readResource, resource } from './model'
 
 describe('InterfaceRenderer', () => {
   let generator: ModelRenderer
@@ -11,9 +11,7 @@ describe('InterfaceRenderer', () => {
 
   before(() => {
     // set timestamp in the context to make the output predictable
-    modelTemplate = readResource(
-      'templates/entities/model.ts.mst'
-    )
+    modelTemplate = readResource('templates/entities/model.ts.mst')
 
     warthogModel = new WarthogModelBuilder(
       resource('fixtures/interfaces.graphql')

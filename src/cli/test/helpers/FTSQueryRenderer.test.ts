@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import {createModel, readResource} from './model'
+import { createModel, readResource } from './model'
 import { FTSQueryRenderer } from '../../generate/FTSQueryRenderer'
 import * as chai from 'chai'
 
@@ -26,9 +26,7 @@ describe('FTSQueryRenderer', () => {
     warthogModel.addQueryClause('test1', 'initial_body_text', 'Thread')
     warthogModel.addQueryClause('test1', 'title', 'Thread')
 
-    const templateData = readResource(
-      'templates/textsearch/migration.ts.mst'
-    )
+    const templateData = readResource('templates/textsearch/migration.ts.mst')
 
     const transformed = generator.generate(
       templateData,
@@ -44,7 +42,7 @@ describe('FTSQueryRenderer', () => {
     warthogModel.addQueryClause('search', 'title', 'Post')
 
     const resolverTemplate = readResource(
-      'templates/textsearch/resolver.ts.mst',
+      'templates/textsearch/resolver.ts.mst'
     )
     const rendered = generator.generate(
       resolverTemplate,
@@ -65,9 +63,7 @@ describe('FTSQueryRenderer', () => {
     const warthogModel = createModel()
     warthogModel.addQueryClause('search', 'title', 'Post')
 
-    const resolverTemplate = readResource(
-      'templates/textsearch/service.ts.mst',
-    )
+    const resolverTemplate = readResource('templates/textsearch/service.ts.mst')
     const rendered = generator.generate(
       resolverTemplate,
       warthogModel.lookupQuery(`search`)

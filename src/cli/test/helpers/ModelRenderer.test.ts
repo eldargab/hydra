@@ -1,6 +1,6 @@
 import { ModelRenderer } from '../../generate/ModelRenderer'
 import { WarthogModel, Field, ObjectType } from '../../model'
-import {createModel, fromStringSchema, readResource} from './model'
+import { createModel, fromStringSchema, readResource } from './model'
 import { expect } from 'chai'
 import Debug from 'debug'
 
@@ -14,12 +14,8 @@ describe('ModelRenderer', () => {
 
   before(() => {
     // set timestamp in the context to make the output predictable
-    modelTemplate = readResource(
-      'templates/entities/model.ts.mst'
-    )
-    resolverTemplate = readResource(
-      'templates/entities/resolver.ts.mst'
-    )
+    modelTemplate = readResource('templates/entities/model.ts.mst')
+    resolverTemplate = readResource('templates/entities/resolver.ts.mst')
   })
 
   beforeEach(() => {

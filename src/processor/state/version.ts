@@ -1,7 +1,7 @@
 import semver from 'semver'
 import Debug from 'debug'
 import fs from 'fs'
-import * as path from "path"
+import * as path from 'path'
 
 const debug = Debug('hydra-processor:util')
 
@@ -34,8 +34,8 @@ not satisfy the manifest version ${indexerVersion}`)
 }
 
 export function getHydraVersion(): string {
-  let packageJsonFile = path.resolve(__dirname, '../../../package.json')
-  let pkg = JSON.parse(fs.readFileSync(packageJsonFile, 'utf-8'))
+  const packageJsonFile = path.resolve(__dirname, '../../../package.json')
+  const pkg = JSON.parse(fs.readFileSync(packageJsonFile, 'utf-8'))
   debug(`Resolved package.json: ${JSON.stringify(pkg, null, 2)}`)
   if (pkg.version) return pkg.version
   throw new Error(`Can't resolve hydra-processor version`)

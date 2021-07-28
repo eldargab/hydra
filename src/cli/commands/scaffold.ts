@@ -12,11 +12,12 @@ import {
   getWarthogDependency,
 } from '../utils'
 
+/* eslint-disable  @typescript-eslint/ban-ts-comment */
 // @ts-ignore
 import select = require('@inquirer/select')
 // @ts-ignore
 import input = require('@inquirer/input')
-// @ts-ignore
+// @ts-ignore // eslint-disable-line
 import password = require('@inquirer/password')
 import glob = require('glob')
 

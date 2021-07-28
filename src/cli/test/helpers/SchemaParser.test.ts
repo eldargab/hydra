@@ -5,7 +5,7 @@ import {
 } from '../../parse/SchemaParser'
 import { expect } from 'chai'
 import { FULL_TEXT_SEARCHABLE_DIRECTIVE } from '../../parse/SchemaDirective'
-import {fromStringSchema, resource} from './model'
+import { fromStringSchema, resource } from './model'
 
 describe('SchemaParser', () => {
   it('should fail on non-existent file', () => {
@@ -105,9 +105,7 @@ describe('SchemaParser', () => {
   })
 
   it('should load multiple files', () => {
-    const parser = new GraphQLSchemaParser(
-      resource('fixtures/schema-folder')
-    )
+    const parser = new GraphQLSchemaParser(resource('fixtures/schema-folder'))
     expect(parser.getObjectDefinations()).length(4, 'Should detect 4 types')
   })
 

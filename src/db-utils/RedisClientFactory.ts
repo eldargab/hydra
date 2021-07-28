@@ -1,5 +1,5 @@
-import { RedisOptions } from 'ioredis'
-import IORedis from 'ioredis'
+import IORedis, { RedisOptions } from 'ioredis'
+
 import Debug from 'debug'
 import { logError } from '../common'
 const debug = Debug('index-builder:redis-factory')

@@ -39,7 +39,7 @@ export function formatFilterValue<T>(value: FilterValue<T>): string {
   }
   if (isArray(value)) {
     return `[${(value as string[])
-      .map((s: string | number) => `${formatScalar(s)}`)
+      .map((s: string | number) => formatScalar(s))
       .join(', ')}]`
   }
 
@@ -114,9 +114,9 @@ export function buildQueryFields<T>(fields: QueryFields<T>): string {
         )
       }
       const key = keys[0] as keyof T
-      const nestedFields = (field as Partial<
-        { [P in keyof T]: QueryFields<T[P]> }
-      >)[key] as QueryFields<T[typeof key]>
+      const nestedFields = (
+        field as Partial<{ [P in keyof T]: QueryFields<T[P]> }>
+      )[key] as QueryFields<T[typeof key]>
 
       output = `
       ${output}${key} {
@@ -174,9 +174,10 @@ export function collectNamedQueries<T>(
   return `query {
     ${Object.keys(queries)
       .map((name) => {
-        const query = queries[name as keyof typeof queries] as GraphQLQuery<
-          unknown
-        >
+        /* eslint-disable */
+        const query = queries[
+          name as keyof typeof queries
+        ] as GraphQLQuery<unknown>
         return `${name}: ${buildQuery(query)}`
       })
       .join('\n')}

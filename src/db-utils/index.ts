@@ -1,2 +1,2 @@
-export {RedisClientFactory} from './RedisClientFactory'
-export {SnakeNamingStrategy} from './SnakeNamingStrategy'
+export { RedisClientFactory } from './RedisClientFactory'
+export { SnakeNamingStrategy } from './SnakeNamingStrategy'
