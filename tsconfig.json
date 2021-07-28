@@ -19,8 +19,6 @@
         "src"
     ],
     "exclude": [
-        "node_modules",
-        "src/e2e-tests/fixtures",
-        "src/cli/templates"
+        "node_modules"
     ]
 }
