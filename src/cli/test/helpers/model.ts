@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { WarthogModel, Field } from '../../model'
-
+import * as PATH from "path"
 import * as tmp from 'tmp'
 import * as fs from 'fs-extra'
 import { WarthogModelBuilder } from '../../parse/WarthogModelBuilder'
@@ -45,3 +45,11 @@ export function fromStringSchema(schema: string): WarthogModel {
 }
 
 export { threadObjType, postObjType, createModel }
+
+export function resource(name: string): string {
+  return PATH.join(__dirname, '../../../../resources/cli', name)
+}
+
+export function readResource(name: string): string {
+  return fs.readFileSync(resource(name), 'utf-8')
+}

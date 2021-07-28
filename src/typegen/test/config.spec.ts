@@ -6,7 +6,7 @@ import path from 'path'
 
 describe('config', () => {
   it('should parse config file', () => {
-    const config = parseConfigFile(path.resolve('test/fixtures/config.yml'))
+    const config = parseConfigFile(resource('fixtures/config.yml'))
     expect(config.customTypes?.typedefsLoc).not.to.be.an('undefined')
   })
 
@@ -31,8 +31,12 @@ describe('config', () => {
       validate(({
         events: ['a'],
         calls: ['b'],
-        customTypes: { typedefsLoc: 'test/fixtures/typedefs.json' },
+        customTypes: { typedefsLoc: resource('fixtures/typedefs.json') },
       } as unknown) as IConfig)
     ).not.to.throw()
   })
 })
+
+function resource(name: string): string {
+  return path.resolve(__dirname, '../../../resources/typegen', name)
+}

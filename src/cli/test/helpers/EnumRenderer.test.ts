@@ -1,8 +1,7 @@
 import { EnumRenderer } from '../../generate/EnumRenderer'
-import { fromStringSchema } from './model'
+import { fromStringSchema, readResource } from './model'
 import { expect } from 'chai'
 import Debug from 'debug'
-import * as fs from 'fs-extra'
 
 const debug = Debug('cli-test:enum-renderer')
 
@@ -11,10 +10,7 @@ describe('EnumRenderer', function () {
 
   before(() => {
     // set timestamp in the context to make the output predictable
-    modelTemplate = fs.readFileSync(
-      './src/templates/entities/enums.ts.mst',
-      'utf-8'
-    )
+    modelTemplate = readResource('templates/entities/enums.ts.mst')
   })
 
   it('should render enum values', function () {

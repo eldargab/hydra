@@ -1,11 +1,10 @@
 import { expect } from 'chai'
-import * as fs from 'fs-extra'
-
 import { WarthogModel } from '../../model'
 import { ModelRenderer } from '../../generate/ModelRenderer'
 import { JsonFieldRenderer } from '../../generate/JsonFieldRenderer'
 import { WarthogModelBuilder } from '../../parse/WarthogModelBuilder'
 import { compact } from '../../generate/utils'
+import {readResource, resource} from "./model";
 
 describe('JsonFieldRenderer', () => {
   let warthogModel: WarthogModel
@@ -13,17 +12,15 @@ describe('JsonFieldRenderer', () => {
   let modelTemplate: string
 
   before(() => {
-    jsonFieldTemplate = fs.readFileSync(
-      './src/templates/jsonfields/jsonfields.model.ts.mst',
-      'utf-8'
+    jsonFieldTemplate = readResource(
+      'templates/jsonfields/jsonfields.model.ts.mst'
     )
-    modelTemplate = fs.readFileSync(
-      './src/templates/entities/model.ts.mst',
-      'utf-8'
+    modelTemplate = readResource(
+      'templates/entities/model.ts.mst'
     )
 
     warthogModel = new WarthogModelBuilder(
-      'test/fixtures/jsonfields.graphql'
+      resource('fixtures/jsonfields.graphql')
     ).buildWarthogModel()
   })
 

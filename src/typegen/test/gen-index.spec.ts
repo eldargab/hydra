@@ -9,9 +9,13 @@ describe('gen-index', () => {
     const dest = tmp.dirSync().name
     generateIndex(({
       modules: [],
-      customTypes: { typedefsLoc: 'test/fixtures/typedefs.json' },
+      customTypes: { typedefsLoc: resource('fixtures/typedefs.json') },
       dest,
     } as unknown) as GeneratorConfig)
     expect(fs.existsSync(path.join(dest, 'typedefs.json'))).equal(true)
   })
 })
+
+function resource(name: string): string {
+  return path.resolve(__dirname, '../../../resources/typegen', name)
+}

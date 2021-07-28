@@ -1,7 +1,6 @@
 import { ModelRenderer } from '../../generate/ModelRenderer'
 import { WarthogModel, Field, ObjectType } from '../../model'
-import { createModel, fromStringSchema } from './model'
-import * as fs from 'fs-extra'
+import {createModel, fromStringSchema, readResource} from './model'
 import { expect } from 'chai'
 import Debug from 'debug'
 
@@ -15,13 +14,11 @@ describe('ModelRenderer', () => {
 
   before(() => {
     // set timestamp in the context to make the output predictable
-    modelTemplate = fs.readFileSync(
-      './src/templates/entities/model.ts.mst',
-      'utf-8'
+    modelTemplate = readResource(
+      'templates/entities/model.ts.mst'
     )
-    resolverTemplate = fs.readFileSync(
-      './src/templates/entities/resolver.ts.mst',
-      'utf-8'
+    resolverTemplate = readResource(
+      'templates/entities/resolver.ts.mst'
     )
   })
 

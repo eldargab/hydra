@@ -1,10 +1,11 @@
 import { WarthogModelBuilder } from '../../parse/WarthogModelBuilder'
 import { expect } from 'chai'
+import { resource } from "./model"
 
 describe('WarthogModelBuild', () => {
   it('should add multi-field multi-entity FTSQuery to the model', () => {
     const generator = new WarthogModelBuilder(
-      'test/fixtures/multiple-entities.graphql'
+      resource('fixtures/multiple-entities.graphql')
     )
     const model = generator.buildWarthogModel()
 
@@ -29,7 +30,7 @@ describe('WarthogModelBuild', () => {
 
   it('should detect multiple queries', () => {
     const generator = new WarthogModelBuilder(
-      'test/fixtures/multiple-queries.graphql'
+      resource('fixtures/multiple-queries.graphql')
     )
     const model = generator.buildWarthogModel()
     expect(model.ftsQueries).length(2, 'Should detect two queries')

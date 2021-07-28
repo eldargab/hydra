@@ -5,7 +5,7 @@ import {
 } from '../../parse/SchemaParser'
 import { expect } from 'chai'
 import { FULL_TEXT_SEARCHABLE_DIRECTIVE } from '../../parse/SchemaDirective'
-import { fromStringSchema } from './model'
+import {fromStringSchema, resource} from './model'
 
 describe('SchemaParser', () => {
   it('should fail on non-existent file', () => {
@@ -94,7 +94,9 @@ describe('SchemaParser', () => {
   // })
 
   it('should load file', () => {
-    const parser = new GraphQLSchemaParser('test/fixtures/single-type.graphql')
+    const parser = new GraphQLSchemaParser(
+      resource('fixtures/single-type.graphql')
+    )
     expect(parser.getObjectDefinations()).length(1, 'Should detect one type')
     expect(parser.getFields(parser.getObjectDefinations()[0])).length(
       5,
@@ -103,12 +105,16 @@ describe('SchemaParser', () => {
   })
 
   it('should load multiple files', () => {
-    const parser = new GraphQLSchemaParser('test/fixtures/schema-folder/')
+    const parser = new GraphQLSchemaParser(
+      resource('fixtures/schema-folder')
+    )
     expect(parser.getObjectDefinations()).length(4, 'Should detect 4 types')
   })
 
   it('should visit directives', () => {
-    const parser = new GraphQLSchemaParser('test/fixtures/single-type.graphql')
+    const parser = new GraphQLSchemaParser(
+      resource('fixtures/single-type.graphql')
+    )
     const names: string[] = []
     const visitor: Visitor = {
       visit: (path) => {

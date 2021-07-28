@@ -1,17 +1,15 @@
-import { fromStringSchema } from './model'
+import { fromStringSchema, readResource } from './model'
 import { expect } from 'chai'
 import { compact as c } from '../../generate/utils'
 import { VariantsRenderer } from '../../generate/VariantsRenderer'
-import * as fs from 'fs-extra'
 
 describe('VariantsRenderer', () => {
   let variantsTemplate: string
 
   before(() => {
     // set timestamp in the context to make the output predictable
-    variantsTemplate = fs.readFileSync(
-      './src/templates/variants/variants.mst',
-      'utf-8'
+    variantsTemplate = readResource(
+      'templates/variants/variants.mst'
     )
   })
 

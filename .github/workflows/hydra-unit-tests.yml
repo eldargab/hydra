@@ -14,17 +14,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: lint
-        run: |
-          yarn 
-          yarn workspaces run lint
+#      - name: lint
+#        run:
       - name: run unit tests
         run: |
-          yarn  
-          yarn workspace @subsquid/hydra-cli test 
-          yarn workspace @subsquid/hydra-typegen test
-          yarn workspace @subsquid/hydra-common build
-          yarn workspace @subsquid/hydra-db-utils build
-          yarn workspace @subsquid/hydra-processor install
-          yarn workspace @subsquid/hydra-processor test
- 
+          npm ci
+          npx tsc
+          ./scripts/test.sh

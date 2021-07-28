@@ -1,10 +1,11 @@
 import { WarthogModelBuilder } from '../../parse/WarthogModelBuilder'
 import { expect } from 'chai'
+import { resource } from "./model"
 
 describe('ExplicitIdFieldRemoval', () => {
   it('should remove id field from entities', () => {
     const generator = new WarthogModelBuilder(
-      'test/fixtures/explicit-id-field.graphql'
+      resource('fixtures/explicit-id-field.graphql')
     )
     const model = generator.buildWarthogModel()
 

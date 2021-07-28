@@ -1,9 +1,8 @@
 import { expect } from 'chai'
-import * as fs from 'fs-extra'
 import { ModelRenderer } from '../../generate/ModelRenderer'
 import { RelationshipGenerator } from '../../generate/RelationshipGenerator'
 import { WarthogModel } from '../../model'
-import { fromStringSchema } from './model'
+import {fromStringSchema, readResource} from './model'
 import { compact as c } from '../../generate/utils'
 
 describe('ReletionshipGenerator', () => {
@@ -13,14 +12,12 @@ describe('ReletionshipGenerator', () => {
   let resolverTemplate: string
 
   before(() => {
-    modelTemplate = fs.readFileSync(
-      './src/templates/entities/model.ts.mst',
-      'utf-8'
+    modelTemplate = readResource(
+      'templates/entities/model.ts.mst'
     )
 
-    resolverTemplate = fs.readFileSync(
-      './src/templates/entities/resolver.ts.mst',
-      'utf-8'
+    resolverTemplate = readResource(
+      'templates/entities/resolver.ts.mst'
     )
   })
 

@@ -1,4 +1,5 @@
-FROM node:14 AS node
+FROM node:14-alpine AS node
+FROM hasura/graphql-engine:v2.0.3.cli-migrations-v3 AS hasura-with-migrations
 
 
 FROM node AS builder
@@ -59,7 +60,7 @@ WORKDIR /hydra/packages/hydra-test
 RUN yarn workspace query-node compile
 
 
-FROM fedormelexin/graphql-engine-arm64:v2.0.3.cli-migrations-v3 AS indexer-gateway
+FROM hasura-with-migrations AS indexer-gateway
 RUN apt-get -y update \
     && apt-get install -y curl ca-certificates gnupg lsb-release \
     && curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \

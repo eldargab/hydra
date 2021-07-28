@@ -1,8 +1,8 @@
 import { expect } from 'chai'
-import * as fs from 'fs-extra'
 import { WarthogModelBuilder } from '../../parse/WarthogModelBuilder'
 import { WarthogModel } from '../../model'
 import { ModelRenderer } from '../../generate/ModelRenderer'
+import {readResource, resource} from "./model"
 
 describe('InterfaceRenderer', () => {
   let generator: ModelRenderer
@@ -11,13 +11,12 @@ describe('InterfaceRenderer', () => {
 
   before(() => {
     // set timestamp in the context to make the output predictable
-    modelTemplate = fs.readFileSync(
-      './src/templates/entities/model.ts.mst',
-      'utf-8'
+    modelTemplate = readResource(
+      'templates/entities/model.ts.mst'
     )
 
     warthogModel = new WarthogModelBuilder(
-      'test/fixtures/interfaces.graphql'
+      resource('fixtures/interfaces.graphql')
     ).buildWarthogModel()
 
     generator = new ModelRenderer(
