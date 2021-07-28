@@ -1,6 +1,8 @@
-**/node_modules
-**/.eslintcache
-**/.nyc_output
-**/.DS_Store
-**/lib
-**/.idea/
+/.idea
+/node_modules
+/lib
+/packages
+
+.eslintcache
+.nyc_output
+.DS_Store

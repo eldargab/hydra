@@ -1,0 +1,182 @@
+{
+  "outDir": "packages",
+  "packages": [
+    {
+      "name": "@subsquid/hydra-common",
+      "js": [
+        "lib/common/index.js"
+      ],
+      "package_json": {
+        "main": "lib/common/index.js",
+        "description": "Common Hydra tools"
+      }
+    },
+    {
+      "name": "@subsquid/hydra-indexer",
+      "js": [
+        "lib/indexer/index.js",
+        "lib/indexer/run.js",
+        "lib/indexer/migrations/**/*.js"
+      ],
+      "deps": [
+        "pg",
+        "pgtools"
+      ],
+      "package_json": {
+        "description": "Block index builder for substrate based chains",
+        "private": true,
+        "main": "lib/indexer/index.js",
+        "types": "lib/indexer/index.d.ts",
+        "scripts": {
+          "start": "node lib/indexer/run.js index"
+        }
+      }
+    },
+    {
+      "name": "@subsquid/hydra-processor",
+      "js": [
+        "lib/processor/index.js",
+        "lib/processor/commands/*.js",
+        "lib/processor/migrations/*.js",
+        "resources/oclif"
+      ],
+      "package_json": {
+        "description": "Hydra Processor CLI",
+        "publishConfig": {
+          "access": "public"
+        },
+        "bin": {
+          "hydra-processor": "resources/oclif"
+        },
+        "oclif": {
+          "commands": "lib/processor/commands",
+          "bin": "hydra-processor",
+          "scope": "@subsquid",
+          "plugins": [
+            "@oclif/plugin-help",
+            "@oclif/errors"
+          ]
+        },
+        "files": [
+          "/lib",
+          "/resources"
+        ],
+        "scripts": {
+          "prepack": "oclif-dev manifest",
+          "postpack": "rm oclif.manifest.json"
+        },
+        "main": "lib/processor/index.js",
+        "types": "lib/processor/index.d.ts",
+        "devDependencies": {
+          "@oclif/dev-cli":"^1.26.0"
+        }
+      }
+    },
+    {
+      "name": "@subsquid/hydra-cli",
+      "js": [
+        "lib/cli/commands/*.js",
+        "resources/oclif"
+      ],
+      "files": [
+        "resources/cli/**/*.*",
+        "resources/cli/**/.*"
+      ],
+      "deps": [
+        "@oclif/plugin-plugins"
+      ],
+      "package_json": {
+        "description": "CLI tool for building a Hydra query node",
+        "bin": {
+          "hydra-cli": "resources/oclif"
+        },
+        "publishConfig": {
+          "access": "public"
+        },
+        "scripts": {
+          "prepack": "oclif-dev manifest",
+          "postpack": "rm oclif.manifest.json"
+        },
+        "oclif": {
+          "commands": "lib/cli/commands",
+          "bin": "hydra-cli",
+          "scope": "@subsquid",
+          "plugins": [
+            "@oclif/plugin-help",
+            "@oclif/errors",
+            "@oclif/plugin-plugins"
+          ]
+        },
+        "files": [
+          "/lib",
+          "/resources",
+          "/oclif.manifest.json"
+        ],
+        "queryNodeDependencies": {
+          "lodash": "^4.17.21",
+          "pg": "^8.3.2",
+          "pg-listen": "^1.7.0",
+          "warthog": "https://github.com/Joystream/warthog/releases/download/v2.32.0/warthog-v2.32.0.tgz",
+          "typeorm": "^0.2.34"
+        },
+        "devDependencies": {
+          "@oclif/dev-cli":"^1.26.0"
+        }
+      }
+    },
+    {
+      "name": "@subsquid/hydra-typegen",
+      "js": [
+        "lib/typegen/commands/*.js",
+        "resources/oclif"
+      ],
+      "files": [
+        "resources/typegen/templates/*.hbs"
+      ],
+      "deps": [
+        "@polkadot/types-known"
+      ],
+      "package_json": {
+        "description": "Hydra-cli plugin for typed events generation",
+        "bin": {
+          "hydra-typegen": "resources/oclif"
+        },
+        "publishConfig": {
+          "access": "public"
+        },
+        "scripts": {
+          "prepack": "oclif-dev manifest",
+          "postpack": "rm oclif.manifest.json"
+        },
+        "files": [
+          "/lib",
+          "/resources",
+          "/oclif.manifest.json"
+        ],
+        "oclif": {
+          "commands": "lib/typegen/commands",
+          "bin": "hydra-typegen",
+          "scope": "@subsquid",
+          "plugins": [
+            "@oclif/plugin-help",
+            "@oclif/errors"
+          ]
+        },
+        "devDependencies": {
+          "@oclif/dev-cli":"^1.26.0"
+        }
+      }
+    },
+    {
+      "name": "@subsquid/hydra-indexer-status-service",
+      "js": [
+        "lib/indexer-status-service.js"
+      ],
+      "package_json": {
+        "main": "lib/indexer-status-service.js",
+        "private": true,
+        "description": "Hydra indexer status service"
+      }
+    }
+  ]
+}

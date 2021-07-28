@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+require('@oclif/command').run()
+  .then(require('@oclif/command/flush'))
+  .catch(require('@oclif/errors/handle'))
+
+// require plugin-help, so that upakovka(1) knows it is required
+require('@oclif/plugin-help')

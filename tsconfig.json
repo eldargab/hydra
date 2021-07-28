@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "outDir": "lib",
+        "module": "commonjs",
+        "target": "es2018",
+        "sourceMap": true,
+        "declaration": true,
+        "esModuleInterop": true,
+        "importHelpers": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "noEmitOnError": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules",
+        "src/e2e-tests/fixtures",
+        "src/cli/templates"
+    ]
+}
