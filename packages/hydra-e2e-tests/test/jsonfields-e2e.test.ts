@@ -34,7 +34,8 @@ describe('end-to-end json fields tests', () => {
   })
 
   it('fetch json list', () => {
-    return queryNode.test(`
+    return queryNode.test(
+      `
       query {
         eventBs {
           statusList {
@@ -44,10 +45,14 @@ describe('end-to-end json fields tests', () => {
           }
         }
       }
-    `, {
-      eventBs: [{
-        statusList: [{isMale: true}]
-      }]
-    })
+    `,
+      {
+        eventBs: [
+          {
+            statusList: [{ isMale: true }],
+          },
+        ],
+      }
+    )
   })
 })

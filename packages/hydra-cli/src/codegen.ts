@@ -330,7 +330,10 @@ function generateOrmModels(model: Model, dir: OutDir): void {
         convert = exp + '.toJSON()'
         break
       case 'list':
-        convert = `${exp}.map((val: any) => ${marshalToJson(prop.type.item, 'val')})`
+        convert = `${exp}.map((val: any) => ${marshalToJson(
+          prop.type.item,
+          'val'
+        )})`
         break
       default:
         throw unsupportedCase(prop.type.kind)

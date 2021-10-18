@@ -34,7 +34,7 @@ export async function eventLoader({ store }: BlockContext & StoreContext) {
     network: Network.BABYLON,
     indexInBlock: 1,
     field2: 'field2',
-    statusList: [new HappyPoor({isMale: true})]
+    statusList: [new HappyPoor({ isMale: true })],
   })
 
   const ce = new ComplexEntity()
