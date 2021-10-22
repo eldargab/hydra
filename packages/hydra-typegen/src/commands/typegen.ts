@@ -4,7 +4,7 @@ import * as fs from 'fs'
 import path from 'path'
 import { Config, CustomTypes, loadConfig, validateConfig } from '../config'
 import { typegen } from '../gen'
-import { getMetadata, MetadataSource } from '../metadata'
+import { getMetadata } from '../metadata'
 import { OutDir } from '../out'
 import { parseChainMetadata } from '../reflect'
 
@@ -84,14 +84,14 @@ Otherwise a relative path to a json file matching the RPC call response is expec
       }
     }
 
-    const typesJson = config.customTypes && JSON.parse(
-      fs.readFileSync(config.customTypes.typedefsLoc, 'utf-8')
-    )
+    const typesJson =
+      config.customTypes &&
+      JSON.parse(fs.readFileSync(config.customTypes.typedefsLoc, 'utf-8'))
 
     const metadata = await getMetadata({
       source: config.metadata.source,
       blockHash: config.metadata.blockHash,
-      typesJson
+      typesJson,
     })
     const modules = parseChainMetadata(metadata)
     const outDir = new OutDir(config.outDir)
