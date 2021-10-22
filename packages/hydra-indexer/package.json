@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@polkadot/api": "^6.4.2",
-    "@subsquid/hydra-common": "^5.0.0-alpha.1",
+    "@subsquid/hydra-common": "^5.0.0-alpha.2",
     "commander": "^8.1.0",
     "debug": "^4.3.2",
     "delay": "~5.0.0",
