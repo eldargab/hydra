@@ -84,7 +84,15 @@ Otherwise a relative path to a json file matching the RPC call response is expec
       }
     }
 
-    const metadata = await getMetadata(config.metadata as MetadataSource)
+    const typesJson = config.customTypes && JSON.parse(
+      fs.readFileSync(config.customTypes.typedefsLoc, 'utf-8')
+    )
+
+    const metadata = await getMetadata({
+      source: config.metadata.source,
+      blockHash: config.metadata.blockHash,
+      typesJson
+    })
     const modules = parseChainMetadata(metadata)
     const outDir = new OutDir(config.outDir)
 
@@ -96,9 +104,7 @@ Otherwise a relative path to a json file matching the RPC call response is expec
       events: config.events,
       calls: config.calls,
       customTypes: config.customTypes && {
-        json: JSON.parse(
-          fs.readFileSync(config.customTypes.typedefsLoc, 'utf-8')
-        ),
+        json: typesJson,
         lib: config.customTypes.lib,
       },
     })
