@@ -180,12 +180,14 @@ export class GraphQLSource implements IProcessorSource {
   ): Promise<T> {
     const raw = await pRetry(() => this.graphClient.request<T>(query), {
       retries: conf().INDEXER_CALL_RETRIES,
-      onFailedAttempt: (i) =>
+      onFailedAttempt: (i) => {
+        debug(`Failed to connect to the indexer endpoint: ${i.toString()}`)
         debug(
           `Failed to connect to the indexer endpoint "${
             conf().INDEXER_ENDPOINT_URL
           }" after ${i.attemptNumber} attempts. Retries left: ${i.retriesLeft}`
-        ),
+        )
+      },
     })
 
     return JSON.parse(JSON.stringify(raw), (k, v) => {
