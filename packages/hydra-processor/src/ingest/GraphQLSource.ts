@@ -9,7 +9,7 @@ import { GraphQLClient } from 'graphql-request'
 import { compact } from 'lodash'
 import { getConfig as conf } from '../start/config'
 import { IndexerStatus } from '../state'
-import { quotedJoin } from '../util/utils'
+import { stringify, quotedJoin } from '../util'
 import { IProcessorSource } from './'
 import { IndexerQuery } from './IProcessorSource'
 import pRetry from 'p-retry'
@@ -90,7 +90,7 @@ export class GraphQLSource implements IProcessorSource {
       )} events`
     )
 
-    if (conf().VERBOSE) debug(`Results: ${JSON.stringify(raw, null, 2)}`)
+    if (conf().VERBOSE) debug(`Results: ${stringify(raw)}`)
 
     return raw as {
       [K in keyof typeof queries]: SubstrateEvent[]
@@ -123,11 +123,11 @@ export class GraphQLSource implements IProcessorSource {
   }
 
   async fetchBlocks(heights: number[]): Promise<SubstrateBlock[]> {
-    if (conf().VERBOSE) debug(`Fetching blocks: ${JSON.stringify(heights)}`)
+    if (conf().VERBOSE) debug(`Fetching blocks: ${stringify(heights)}`)
 
     const cached = compact(heights.map((h) => this.blockCache.get(h)))
 
-    if (conf().VERBOSE) debug(`Cached blocks: ${JSON.stringify(cached)}`)
+    if (conf().VERBOSE) debug(`Cached blocks: ${stringify(cached)}`)
 
     const toFetch = heights.filter((h) => this.blockCache.get(h) === undefined)
     if (toFetch.length === 0) {
