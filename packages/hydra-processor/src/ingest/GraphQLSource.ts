@@ -235,7 +235,7 @@ export function getEventsGraphQLQuery({
 
   // FIXME: very rough...
   const block_gt = block.gt || 0
-  const block_lte = block.lte || Number.MIN_SAFE_INTEGER
+  const block_lte = block.lte || 2147483647 // || MAX_INT by graphql
 
   return `
   substrate_event(where: {${eventsFilter}${extrinsicsFilter}${idFilter} blockNumber: {_gt: ${block_gt}, _lte: ${block_lte}}}, limit: ${limit}, order_by: {id: asc}) {
