@@ -1,0 +1,12 @@
+table:
+  name: evm_log_idx
+  schema: public
+select_permissions:
+  - role: user
+    permission:
+      allow_aggregations: false
+      columns:
+        - contract_address
+        - topic
+        - block_id
+      filter: {}

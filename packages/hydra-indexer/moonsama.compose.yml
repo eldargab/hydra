@@ -1,0 +1,67 @@
+version: "3.7"
+
+services:
+  redis:
+    image: redis:6.0-alpine
+    ports:
+      - "6379:6379"
+
+  db:
+    image: postgres:12
+    restart: always
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_DB: moonsama
+      POSTGRES_PASSWORD: postgres
+
+  indexer:
+    restart: on-failure
+    depends_on:
+      - db
+      - redis
+    build:
+      context: ../..
+      target: indexer-evm
+    command: >
+        sh -c "yarn db:bootstrap && yarn start:prod"
+    environment:
+      DB_NAME: moonsama
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_HOST: db
+      DB_PORT: 5432
+      WS_PROVIDER_ENDPOINT_URI: wss://moonriver.api.onfinality.io/public-ws
+      REDIS_URI: redis://redis:6379/0
+      BLOCK_HEIGHT: 568970
+
+  gateway:
+    build:
+      context: ../..
+      target: moonriver-flat-indexer-gateway
+    restart: always
+    depends_on:
+      - redis
+      - db
+      - status-service
+      - indexer
+    environment:
+      DEV_MODE: "true"
+      DB_NAME: moonsama
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_HOST: db
+      DB_PORT: 5432
+      HYDRA_INDEXER_STATUS_SERVICE: http://status-service:8081/status
+    ports:
+      - "8080:8080"
+
+  status-service:
+    build:
+      context: ../..
+      target: indexer-status-service
+    depends_on:
+      - redis
+    environment:
+      REDIS_URI: redis://redis:6379/0
+      PORT: 8081

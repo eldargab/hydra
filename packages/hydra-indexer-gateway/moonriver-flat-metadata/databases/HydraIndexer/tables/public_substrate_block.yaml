@@ -25,6 +25,13 @@ array_relationships:
       table:
         name: substrate_extrinsic
         schema: public
+- name: evm_log
+  using:
+    foreign_key_constraint_on:
+      column: block_id
+      table:
+        name: evm_log_idx
+        schema: public
 select_permissions:
 - permission:
     allow_aggregations: true
