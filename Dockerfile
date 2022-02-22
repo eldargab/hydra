@@ -55,8 +55,8 @@ CMD ["node", "./lib/run.js", "index"]
 
 FROM indexer AS indexer-evm
 COPY --from=indexer-build /hydra/packages/hydra-indexer/lib/migrations/evm lib/migrations/v4
-ADD packages/hydra-indexer/moonsama.typedefs.json .
-ENV BUNDLE_TYPES /hydra-indexer/moonsama.typedefs.json
+ADD packages/hydra-indexer/evm.typedefs.json .
+ENV BUNDLE_TYPES /hydra-indexer/evm.typedefs.json
 
 
 FROM base AS indexer-status-service-builder
