@@ -42,8 +42,8 @@ jobs:
           RELEASE_TAG: ${{ github.event.inputs.releaseTag }}
 
       - name: Publish hydra-evm-indexer image
-        if: "contains(github.event.inputs.packages, 'hydra-indexer') || github.event.inputs.packages == '*'"
-        run: ./scripts/docker-publish.sh hydra-indexer-evm
+        if: "contains(github.event.inputs.packages, 'hydra-evm-indexer') || github.event.inputs.packages == '*'"
+        run: ./scripts/docker-publish.sh hydra-evm-indexer
         env:
           RELEASE_TAG: ${{ github.event.inputs.releaseTag }}
 
@@ -59,14 +59,8 @@ jobs:
         env:
           RELEASE_TAG: ${{ github.event.inputs.releaseTag }}
 
-      - name: Publish hydra-moonriver-indexer-gateway image
-        if: "contains(github.event.inputs.packages, 'hydra-moonriver-indexer-gateway') || github.event.inputs.packages == '*'"
-        run: ./scripts/docker-publish.sh hydra-moonriver-indexer-gateway
-        env:
-          RELEASE_TAG: ${{ github.event.inputs.releaseTag }}
-
-      - name: Publish hydra-moonriver-flat-indexer-gateway image
-        if: "contains(github.event.inputs.packages, 'hydra-moonriver-flat-indexer-gateway') || github.event.inputs.packages == '*'"
-        run: ./scripts/docker-publish.sh hydra-moonriver-flat-indexer-gateway
+      - name: Publish hydra-evm-indexer-gateway image
+        if: "contains(github.event.inputs.packages, 'hydra-evm-indexer-gateway') || github.event.inputs.packages == '*'"
+        run: ./scripts/docker-publish.sh hydra-evm-indexer-gateway
         env:
           RELEASE_TAG: ${{ github.event.inputs.releaseTag }}

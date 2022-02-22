@@ -22,7 +22,7 @@ services:
       - redis
     build:
       context: ../..
-      target: indexer-evm
+      target: evm-indexer
     command: >
         sh -c "yarn db:bootstrap && yarn start:prod"
     environment:
@@ -38,7 +38,7 @@ services:
   gateway:
     build:
       context: ../..
-      target: moonriver-flat-indexer-gateway
+      target: evm-indexer-gateway
     restart: always
     depends_on:
       - redis

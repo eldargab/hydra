@@ -53,7 +53,7 @@ COPY --from=indexer-build /hydra/packages/hydra-indexer/lib lib/
 CMD ["node", "./lib/run.js", "index"]
 
 
-FROM indexer AS indexer-evm
+FROM indexer AS evm-indexer
 COPY --from=indexer-build /hydra/packages/hydra-indexer/lib/migrations/evm lib/migrations/v4
 ADD packages/hydra-indexer/evm.typedefs.json .
 ENV BUNDLE_TYPES /hydra-indexer/evm.typedefs.json
@@ -145,11 +145,6 @@ ENTRYPOINT [ "/docker-entrypoint.sh" ]
 EXPOSE 8080
 
 
-FROM indexer-gateway AS moonriver-indexer-gateway
+FROM indexer-gateway AS evm-indexer-gateway
 RUN rm -rf /hasura-metadata
-ADD packages/hydra-indexer-gateway/moonriver-metadata /hasura-metadata/
-
-
-FROM indexer-gateway AS moonriver-flat-indexer-gateway
-RUN rm -rf /hasura-metadata
-ADD packages/hydra-indexer-gateway/moonriver-flat-metadata /hasura-metadata/
+ADD packages/hydra-indexer-gateway/evm-metadata /hasura-metadata/
