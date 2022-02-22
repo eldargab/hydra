@@ -40,9 +40,13 @@ export class StoreEvmHash1641997527150 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`DROP TRIGGER evm_hash_insert_trigger_fnc ON substrate_event`)
+    await queryRunner.query(
+      `DROP TRIGGER evm_hash_insert_trigger_fnc ON substrate_event`
+    )
     await queryRunner.query(`DROP FUNCTION evm_hash_insert_trigger_fnc()`)
     await queryRunner.query(`DROP INDEX "IDX_substrate_event__evm_hash"`)
-    await queryRunner.query(`ALTER TABLE "substrate_event" DROP COLUMN IF EXISTS "evm_hash"`)
+    await queryRunner.query(
+      `ALTER TABLE "substrate_event" DROP COLUMN IF EXISTS "evm_hash"`
+    )
   }
 }
